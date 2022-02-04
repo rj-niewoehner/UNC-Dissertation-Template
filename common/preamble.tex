@@ -8,7 +8,9 @@
 \usepackage[hang,flushmargin]{footmisc}
 
 % Citation style
-\usepackage{harvard}
+% \usepackage{harvard}
+\usepackage[natbibapa]{apacite}         % Citation Style
+\usepackage{endnotes}
 
 % Figures
 \usepackage{graphicx}
@@ -17,14 +19,27 @@
 \usepackage{epsfig}
 \usepackage{multicol}
 \usepackage{listings}
+\usepackage{rotating}                   % Figure rotation
+\usepackage{floatrow}                   % Can only pick one of: float, floatrow
+\floatsetup[figure]{capposition=top}    % Specify where to put FIGURE caption
+\usepackage[labelfont=bf]{caption}      % Table/Figure bold caption
+
 
 % Tables
-\usepackage{booktabs}
-\usepackage{dcolumn}
-\usepackage{multirow}
-\usepackage{hhline}
-\usepackage{stackengine}
-\usepackage{tablefootnote}
+% \usepackage{booktabs}
+% \usepackage{dcolumn}
+% \usepackage{multirow}
+% \usepackage{hhline}
+% \usepackage{stackengine}
+% \usepackage{tablefootnote}
+\usepackage{tabularx}                   % Table formatting
+\usepackage{multirow}                   % Table formatting 
+\usepackage{multicol}                   % Table formatting
+\usepackage{threeparttable}             % Tables with footnotes
+\usepackage{lscape}                     % Table rotation
+\usepackage[table]{xcolor}              % Table cell shading
+\usepackage[labelfont=bf]{caption}      % Table/Figure bold caption
+\floatsetup[table]{capposition=top}     % Specify where to put TABLE caption
 
 % Algorithms
 \usepackage[boxed,longend]{algorithm2e}
@@ -32,11 +47,14 @@
 % Math
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bbm}                        % Indicator function
 
 % Typography
 \usepackage{times}
 \usepackage{microtype}
 \usepackage{textcomp}
+\usepackage[super]{nth}                 % Enables writing 1st, 2nd, etc.
 
 % Macro support
 \usepackage{xspace}
@@ -52,6 +70,9 @@
 
 % PDF links
 \usepackage[hidelinks]{hyperref} % backref=page
+
+
+
 
 \input{common/layout}
 
