@@ -1,8 +1,219 @@
-\chapter{A Second Appendix}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+\chapter{Chapter 2 Appendix -- Task Selection and Patient ``Pick-up"}
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+% \newpage
+\section{Appendix - Data Trimming} \label{app_pu_Trim}
+ Because we are interested in the impact of group familiarity, we first remove all observations where only one provider was observed during a given hour. Such observations are of a “group” of 1 with no possible familiarity. Second, to mitigate the presence of some outliers in the data which may follow data entry errors or miscoding, we trim the data to contain only up to the 97th percentile of patient length of stay (dropping 1,276 observations with visits longer than about 24 hours) and any observations which contain patient wait times greater than 400 minutes (approximately the 99th percentile, dropping 392 observations). Additionally, 72 observations do not include an indication of patient severity upon arrival to the ED. As such information is critical to a physician’s decision to pick-up a patient, we also drop such observations. Finally, we drop 6 observations which list the discharge time before the pick-up time and 208 observations where the pick-up is listed as the same the the arrival time, as duration analysis cannot be performed on observations with zero time-to-failure. After trimming, we are left with 40,617 observations. 
+ 
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+% \newpage
+\section{Appendix - Example Panels} \label{app_pu_examples}
 
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer
+\begin{table}[htbp]
+  \resizebox{1\textwidth}{!}{ 
+  \begin{threeparttable}[t]
+   \centering
+   \caption{Hypothetical ED Panel, Sorted by Patient Pick-up Time}
+    \begin{tabular}{ccccccccccccc}
+    \textbf{Pick-up} & \textbf{Pick-up} & \textbf{Pick-up} &       & \textbf{Group} & \textbf{Phys.} & \textbf{Pair-1} & \textbf{Pair-2} & \textbf{Pair-3} & \textbf{Fam:} & \textbf{Fam:} & \textbf{Fam:} & \textbf{Average} \\
+    \textbf{Time} & \textbf{Hour} & \textbf{Phys. ID} & \textbf{Phys. Exp.} & \textbf{Size (hr)} & \textbf{Group (hr)} & \textbf{IDs} & \textbf{IDs} & \textbf{IDs} & \textbf{Pair1} & \textbf{Pair2} & \textbf{Pair3} & \textbf{Familiarity} \\
+          &       &       &       &       &       &       &       &       &       &       &       &  \\
+    9:23 AM & 9     & 57    & 1     & 2     & 57, 83 & (57, 83) &       &       & 1     &       &       & 1.00 \\
+    9:42 AM & 9     & 83    & 4     & 2     & 57, 83 & (57, 83) &       &       & 2     &       &       & 2.00 \\
+    9:44 AM & 9     & 83    & 5     & 2     & 57, 83 & (57, 83) &       &       & 3     &       &       & 3.00 \\
+    9:55 AM & 9     & 57    & 2     & 2     & 57, 83 & (57, 83) &       &       & 4     &       &       & 4.00 \\
+    9:56 AM & 9     & 57    & 3     & 2     & 57, 83 & (57, 83) &       &       & 5     &       &       & 5.00 \\
+    10:06 AM & 10    & 83    & 6     & 3     & 57, 69, 83 & (57, 69) & (57, 83) & (69, 83) & 1     & 6     & 8     & 5.00 \\
+    10:11 AM & 10    & 69    & 3     & 3     & 57, 69, 83 & (57, 69) & (57, 83) & (69, 83) & 2     & 7     & 9     & 6.00 \\
+    10:30 AM & 10    & 57    & 4     & 3     & 57, 69, 83 & (57, 69) & (57, 83) & (69, 83) & 3     & 8     & 10    & 7.00 \\
+    \end{tabular}%
+    \medskip
+    \begin{tablenotes}
+      \footnotesize
+      \item \textbf{Table Note:} The table represents a hypothetical snapshot of our data, sorted by patient pick-up time. \textbf{Pick-up: Phys. ID} is the identifier of the physician picking up the patient at the \textbf{Pick-up Time}. \textbf{Phys. Exp.} is a cumulative count of the number of patients picked up by the physician while working in a group. The physician group [Phys. Group (hr)] of size [\textbf{Group Size (hr)}] is defined for the \textbf{Pick-up Hour} as “any physician who picked up a patient that hour.” A physician group of size $N$ yields “$N$ choose 2” pairwise combinations (e.g., \textbf{Pair-1 IDs}). Each pair of physicians has a familiarity count (e.g., \textbf{Fam: Pair1}). Each group has a mean pairwise familiarity (Average Familiarity). In the example above, physician pair (57, 83) and pair (57, 69) had not worked together before, and so pairwise familiarity starts at zero. In contrast, Physicians 69 and 83 had worked together before the panel, and so they already possessed some level of familiarity.
+    \end{tablenotes}
+%   \label{tab:add_label}
+  \end{threeparttable} }
+ \end{table}
+
+\begin{table}[htbp]
+  \resizebox{1\textwidth}{!}{ 
+  \begin{threeparttable}[t]
+   \centering
+   \caption{Hypothetical Physician Panel, Sorted by Patient Pick-up Time}
+    \begin{tabular}{cccccccc}
+    \textbf{Pick-up} & \textbf{Pick-up} & \textbf{Pick-up:} &       &       & \textbf{Pick up New Patient?} & \textbf{Group} & \textbf{Phys.} \\
+    \textbf{Time} & \textbf{Hour} & \textbf{Phys. ID} & \textbf{Phys. Exp.} & \textbf{Shift ID} & \textbf{1 - “Yes"; 0 - “No" } & \textbf{Size (hr)} & \textbf{Group (hr)} \\
+          &       &       &       &       &       &       &  \\
+    3:45 PM & 15    & 4     & 1     & 1     & 1     & 3     & 4, 45, 76 \\
+    3:46 PM & 15    & 4     & 2     & 1     & 1     & 3     & 4, 45, 76 \\
+    3:47 PM & 15    & 4     & 3     & 1     & 1     & 3     & 4, 45, 76 \\
+    3:54 PM & 15    & 4     & 4     & 1     & 1     & 3     & 4, 45, 76 \\
+    5:04 PM & 17    & 4     & 5     & 1     & 1     & 4     & 4, 45, 68, 76 \\
+    9:28 PM & 21    & 4     & 6     & 1     & 1     & 2     & 4, 68 \\
+    10:31 PM & 22    & 4     & 7     & 1     & 1     & 3     & 4, 67, 68 \\
+    10:32 PM & 22    & 4     & 8     & 1     & 0     & 3     & 4, 67, 68 \\
+          &       &       &       &       &       &       &  \\
+    4:59 PM & 16    & 4     & 9     & 2     & 1     & 3     & 4, 52, 69 \\
+    5:03 PM & 17    & 4     & 10    & 2     & 1     & 2     & 4, 52 \\
+    5:04 PM & 17    & 4     & 11    & 2     & 1     & 2     & 4, 52 \\
+    6:13 PM & 18    & 4     & 12    & 2     & 1     & 3     & 4, 26, 52 \\
+    6:46 PM & 18    & 4     & 13    & 2     & 1     & 3     & 4, 26, 52 \\
+    6:47 PM & 18    & 4     & 14    & 2     & 1     & 3     & 4, 26, 52 \\
+    10:00 PM & 22    & 4     & 15    & 2     & 1     & 3     & 4, 52, 64 \\
+    10:27 PM & 22    & 4     & 16    & 2     & 0     & 3     & 4, 52, 64 \\
+          &       &       &       &       &       &       &  \\
+    8:09 AM & 8     & 4     & 17    & 3     & 1     & 2     & 4, 65 \\
+    8:44 AM & 8     & 4     & 18    & 3     & 1     & 2     & 4, 65 \\
+    10:16 AM & 10    & 4     & 19    & 3     & 1     & 3     & 4, 15, 65 \\
+    1:02 PM & 13    & 4     & 20    & 3     & 1     & 3     & 4, 15, 65 \\
+    2:38 PM & 14    & 4     & 21    & 3     & 0     & 4     & 4, 11, 15, 89 \\
+    \end{tabular}%
+    \medskip
+    \begin{tablenotes}
+      \footnotesize
+      \item \textbf{Table Note:} The table represents a hypothetical snapshot of our data, focusing on one physician ID and sorted by patient pick-up time. \textbf{Phys. ID} is the identifier of the physician picking up the patient at the \textbf{Pick-up Time}. \textbf{Phys. Exp.} is a cumulative count of the number of patients picked up by the physician while working in a group. \textbf{Shift ID} identifies each unique shift. The physician group [\textbf{Phys. Group (hr)}] of size \textbf{Group Size (hr)} is defined for the \textbf{Pick-up Hour} as “any physician who picked up a patient that hour.” The \textbf{Pick up New Patient} column is an indicator variable which indicates whether the provider picked up another patient after the focal patient.
+    \end{tablenotes}
+%   \label{tab:add_label}
+  \end{threeparttable} }
+ \end{table}
+
+% \newpage
+\section{Appendix - Full Regression Results} \label{pu_full_reg}
+
+\begin{table}[htbp]
+  \resizebox{1\textwidth}{!}{ 
+  \begin{threeparttable}[t]
+   \centering
+   \caption{Full Regression Results for All Hypotheses}
+    \begin{tabular}{lcccccc}
+          & (1)   & (2)   & (3)   & (4)   & (5)   & (6) \\
+    Output Variable & \textbf{Pick-up Rate} & \textbf{Pick-up Likelihood} & \textbf{Multitasking} & \textbf{Wait Time} & \textbf{Processing Time} & \textbf{Length of Stay} \\
+    Model & Linear FE & Chamberlain RE Probit & Linear FE & AFT Duration & AFT Duration & AFT Duration \\
+    Estimation Method & Coefficient/APE & Coefficient & Coefficient/APE & Coefficient & Coefficient & Coefficient \\
+          &       &       &       &       &       &  \\
+    \textit{Average Familiarity} & 0.0319*** & 0.0959*** & 0.141*** & -0.0155** & -0.0000725 & -0.00330 \\
+          & (0.00796) & (0.0134) & (0.0168) & (0.00646) & (0.00392) & (0.00325) \\
+          & [0.000128] & [0]   & [0]   &       &       &  \\
+    \textit{Waiting Room Occupancy (lag)} & 0.0452*** & -0.0117*** & 0.000254 & 0.0931*** & -0.00577*** & 0.0237*** \\
+          & (0.00302) & (0.00395) & (0.00435) & (0.00213) & (0.00105) & (0.000873) \\
+          & [0]   & [0.00308] & [0.954] &       &       &  \\
+    \textit{ED Seen Occupancy (lag)} & 0.0154*** & 0.0575*** & 0.145*** & 0.0129*** & 0.00567*** & 0.00705*** \\
+          & (0.00183) & (0.00424) & (0.00507) & (0.00163) & (0.000875) & (0.000750) \\
+          & [0]   & [0]   & [0]   &       &       &  \\
+    \textit{Physician Hours into Shift} & -0.200*** & -0.619*** & 0.634*** & -0.00153 & -0.0225*** & -0.0146*** \\
+          & (0.00607) & (0.0247) & (0.00991) & (0.00240) & (0.00170) & (0.00125) \\
+          & [0]   & [0]   & [0]   &       &       &  \\
+    \textit{Physician Experience (linear)} & 0.0382 & 0.130 & 0.380*** & 0.122*** & 0.0729*** & 0.0829*** \\
+          & (0.0414) & (0.115) & (0.0755) & (0.0304) & (0.0186) & (0.0161) \\
+          & [0.359] & [0.256] & [2.46e-06] &       &       &  \\
+    \textit{Physician Experience (quadratic)} & 0.00364 & -0.0112 & -0.0468*** & -0.0142*** & -0.00744*** & -0.00871*** \\
+          & (0.00589) & (0.0133) & (0.0121) & (0.00464) & (0.00283) & (0.00245) \\
+          & [0.538] & [0.402] & [0.000214] &       &       &  \\
+    \textit{Physician Multitasking (lag)} &       & 0.0313** &       &       &       &  \\
+          &       & (0.0133) &       &       &       &  \\
+          &       & [0.0185] &       &       &       &  \\
+    \textit{Team Size: 2 physicians} & -0.216 & 0.723 & 1.188** & 0.237*** & 0.191** & 0.134*** \\
+          & (0.206) & (0.707) & (0.478) & (0.0887) & (0.0847) & (0.0329) \\
+          & [0.297] & [0.306] & [0.0148] &       &       &  \\
+    \textit{Team Size: 3 physicians} & -0.291 & 0.657 & 0.864+ & 0.148+ & 0.190** & 0.112*** \\
+          & (0.203) & (0.708) & (0.471) & (0.0879) & (0.0845) & (0.0328) \\
+          & [0.156] & [0.354] & [0.0700] &       &       &  \\
+    \textit{Team Size: 4 physicians} & -0.352 & 0.145 & 0.331 & 0.0803 & 0.218** & 0.107*** \\
+          & (0.213) & (0.700) & (0.472) & (0.0964) & (0.0874) & (0.0375) \\
+          & [0.102] & [0.835] & [0.485] &       &       &  \\
+    \textit{Patient: Male} &       & -0.0518** & -7.97e-06 & -0.0377*** & -0.0356*** & -0.0415*** \\
+          &       & (0.0251) & (0.0152) & (0.00820) & (0.00701) & (0.00540) \\
+          &       & [0.0388] & [1.000] &       &       &  \\
+    \textit{Patient: Age 65+} &       & -0.0288 & -0.0144 & -0.0986*** & 0.125*** & 0.0658*** \\
+          &       & (0.0270) & (0.0175) & (0.00985) & (0.00758) & (0.00591) \\
+          &       & [0.286] & [0.412] &       &       &  \\
+    \textit{Patient: ESI-1} &       & -0.403*** & -0.0370 & -1.233*** & -0.000527 & -0.292*** \\
+          &       & (0.0484) & (0.0428) & (0.0265) & (0.0158) & (0.0153) \\
+          &       & [0]   & [0.390] &       &       &  \\
+    \textit{Patient: ESI-2} &       & -0.103*** & -0.00747 & -0.411*** & 0.201*** & 0.0305*** \\
+          &       & (0.0249) & (0.0223) & (0.0107) & (0.00775) & (0.00633) \\
+          &       & [3.24e-05] & [0.738] &       &       &  \\
+    \textit{Patient: ESI-4} &       & 0.0384 & 0.0259 & 0.0136 & -0.677*** & -0.452*** \\
+          &       & (0.0507) & (0.0438) & (0.0195) & (0.0174) & (0.0150) \\
+          &       & [0.449] & [0.555] &       &       &  \\
+    \textit{Patient: ESI-5} &       & -0.232 & -0.379** & -0.0116 & -1.082*** & -0.740*** \\
+          &       & (0.148) & (0.149) & (0.0875) & (0.0726) & (0.0657) \\
+          &       & [0.115] & [0.0128] &       &       &  \\
+    \textit{Hospital 2} & -0.128** & -0.290*** & 0.203 & 0.0741** & 0.165*** & 0.179*** \\
+          & (0.0599) & (0.0602) & (0.137) & (0.0348) & (0.0191) & (0.0162) \\
+          & [0.0354] & [1.49e-06] & [0.143] &       &       &  \\
+          &       &       &       &       &       &  \\
+    Observations & 23,909 & 40,617 & 40,617 & 40,617 & 40,617 & 40,617 \\
+    Physicians & 91    & 91    & 91    & 91    & 91    & 91 \\
+    Physician Controls: Phys. FE & Y     & Y     & Y     & Y     & Y     & Y \\
+    ED Controls: ToD, DoW, Month & Y     & Y     & Y     & Y     & Y     & Y \\
+    \end{tabular}%
+    \medskip
+    \begin{tablenotes}
+      \footnotesize
+      \item \textbf{Table Note:} In Columns (1), (2), and (3), robust standard errors clustered at the physician level are reported in parentheses alongside two-sided p-values (reported in brackets). In Columns (4), (5), and (6), Accelerated Failure Time (AFT) duration models include robust standard errors (reported in parentheses) which are clustered at the time of day level for each day in our dataset. In Column (1), Patient Pick-up Rate is measured in patient pick-ups per hour. Results reported in Column (1) aggregate observations to the hourly level, thus omitting patient specific characteristics as discussed in Section \ref{spec_linear}. Abbreviations: Phys. (Physician), FE (Fixed Effect), ToD (Time of Day), DoW (Day of Week). % (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
+      \item (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
+    \end{tablenotes}
+%   \label{tab:add_label}
+  \end{threeparttable} }
+ \end{table}
+
+% \newpage
+\section{Appendix - Time Between Patients} \label{app_pu_hazard_between}
+ As an alternative to the models for Patient Pick-up Rate presented in Section \ref{em_spec} and the results presented in Section \ref{results_H1}, we present a similar model here which examines time the between pick-ups for a given physician within a given shift. Because the model also focuses on elapsed time, we can leverage a duration model similar to the models presented in Section \ref{spec_hazard}. As above, we apply an accelerated-failure-time (AFT) model, a form of parametric duration (or hazard) regression:
+  \begin{equation}
+  h(t|\boldsymbol{X_{it}}) = h_0(t) \exp(\boldsymbol{X_{it}} \boldsymbol{\beta})
+  \end{equation}
+ 
+ In such a case, “time to failure” is “time between patient pick-ups.” Such a form models the relationship of a linear combination of covariates to the duration between the patient visit at time $t$ (day-hour-minute) and $t+1$ who is treated by physician $i$. We maintain a highly flexible specification in assuming a generalized gamma distribution for the model and we stratify by ED (as above), allowing the shape and scale of the hazard function to vary for each ED. In the regressions, we cluster the errors at the time of day level (as above), for each day in our dataset, to correct for serial correlation and heteroskedasticity within clinics. We specify our linear combination of covariates as follows.
+  \begin{equation} \begin{split} %
+        \boldsymbol{X_{it}}\boldsymbol{\beta} = (1 & + \ln(AverageFamiliarity_{it}) + HIS_{it} + \ln(Exp_{it}) + [\ln(Exp_{it})]^2 \\
+        & + GroupSize_t + Occ_{t-1}^{Wait} + Occ_{t-1}^{Treat}   \\
+        & + Hosp_i + c_i + \boldsymbol{\delta_t} + \boldsymbol{\theta_t} ) * \boldsymbol{\beta}
+  \end{split}  \end{equation}
+ 
+ The results for the model are presented in Table \ref{tab:app_between}. The results show an increase in average familiarity decreases the time between patient pick-ups for a physician, and the results are statistically significant. For interpretation: The Average Partial Effect shows a 1\% increase in average familiarity corresponds to a 1.3-minute decrease $(p < 0.01)$ in a physician’s time between picking up patients.
+ 
+ There are two notable downsides to such an approach. First, it ignores the total number of patients treated during a shift. That is, we see more familiarity decreases the time between pick-ups, but what if physicians are picking up fewer patients, more quickly? Second, such an approach excludes large amounts of data, because we must drop observations in cases where (i) the observation is the last observation of the shift (since there is no “time to next patient” for such a shift) and (ii) instances where a physician simultaneously picks up a second/third/…/etc. patient. Duration models cannot be applied to observations where there is a zero duration, and both cases possess zero duration. In our dataset, observations which fit either case account for more than 25\% of our sample. Because of such limitations, we maintain our use of the two pick-up rate models (Specifications \ref{eqn_pu_rate_1} and \ref{eqn_pu_rate_2}) while noting our conclusions hold even under an alternative specification.
+ 
+ \begin{table}[htbp]
+  \resizebox{.7\textwidth}{!}{ 
+  \begin{threeparttable}[t]
+   \centering
+   \caption{More familiarity decreases time between patient pick-ups in the same shift.}
+    \begin{tabular}{lc}
+          & (1) \\
+    Output Variable & \textbf{Time Between Patient Pick-ups} \\
+    Hypothesis & H1 \\
+    Model & AFT Duration \\
+    Estimation Method & Coefficient \\
+          &  \\
+    \textit{Average Familiarity} & -0.0288*** \\
+          & (0.00500) \\
+    \textit{Waiting Room Occupancy} & -0.00314** \\
+          & (0.00133) \\
+    \textit{ED Seen Occupancy} & -0.0243*** \\
+          & (0.00116) \\
+    \textit{Physician Hours into Shift} & 0.178*** \\
+          & (0.00273) \\
+    \textit{Physician Experience (linear)} & -0.0450+ \\
+          & (0.0252) \\
+    \textit{Physician Experience (quadratic)} & 0.00352 \\
+          & (0.00349) \\
+          &  \\
+    Physician Controls: Group Size, Phys. FE & Y \\
+    Patient Controls: Age, Gender, Severity & Y \\
+    ED Controls: Hosp. FE, ToD, DoW, Month & Y \\
+          &  \\
+    Physicians & 91 \\
+    Observations &  29,993  \\
+    \end{tabular}%
+    \medskip
+    \begin{tablenotes}
+      \footnotesize
+      \item \textbf{Table Note:} Accelerated Failure Time (AFT) models include robust standard errors clustered at the time of day level for each day in our dataset and reported in parentheses.
+      \item (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
+    \end{tablenotes}
+  \label{tab:app_between}
+  \end{threeparttable} }
+ \end{table} 
