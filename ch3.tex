@@ -201,13 +201,17 @@
  \subsection{Model-Free Evidence}
  We present Figure \ref{fig:model_free_vc2} as model-free evidence of our findings. The measures in the figure represent percent changes from pre-pandemic baselines; in other words, a 0\% change would mean a state had returned to their pre-pandemic baseline. From the figure, we note the following. First, personal mobility (Trips per Person) returns to or exceeds pre-pandemic baselines for all states by the end of August 2020, with one exception (Florida). Second, vaccination traffic returns to or exceeds pre-pandemic baselines, again with only one exception (New York). The exact opposite occurs, however, for total clinic traffic (the combination of vaccination and non-vaccination traffic): Only Indiana seems to ever recover a pre-pandemic baseline for total clinic traffic. We proceed by testing our hypotheses using observations from March 1 through 60-days following the lifting of the stay-at-home orders. Our empirical approach focuses on how changes in mobility and coarse or precise signals affect clinic traffic. Table \ref{tab:H1H2} and Table \ref{tab:phoc} highlight the most pertinent coefficients from the full regression tables in Appendix \ref{app_vc2_fullReg}.
  
- \begin{sidewaysfigure}[htbp]
+%  \begin{sidewaysfigure}[htbp]
+\begin{landscape}
+\begin{figure}
      \centering
      \caption{By the end of August 2020, \textit{Trips per Person} and \textit{Vaccination Traffic} returned to or exceeded pre-pandemic levels while \textit{Total Traffic} does not.} \medskip
      \includegraphics[scale=1]{Figures/VC2/Model-Free.png}     
      \label{fig:model_free_vc2}
      \floatfoot{\textbf{Figure Note:} The figure illustrates percent changes in the outcome variables: A 0\% change indicates a return to the pre-pandemic baseline. Grey vertical bands indicate state-wide stay-at-home orders. The blue line represents a LOESS conditional smoothing function applied to the raw data from our sample of 172 clinics.}
- \end{sidewaysfigure} 
+\end{figure}
+\end{landscape}
+%  \end{sidewaysfigure} 
 
 \subsection{The Effect of Mobility}
  First, we want to know the effect of mobility on any kind of clinic traffic. In Table \ref{tab:H1H2}, Column (1), we see an increase in personal mobility corresponds to an increase in clinic traffic: A 1\% increase in personal mobility leads to a 0.696\% increase in total clinic traffic. Furthermore, in the interaction coefficient ($Mobility * Shutdown$), we observe the state mandated stay-at-home orders significantly dampened the effect of mobility on traffic.
