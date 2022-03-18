@@ -9,8 +9,9 @@
 % Center chapter titles
 % Place chapter title, number, and name on same line
 % Make chapter headings all uppercase, standard font size
-% Omit page numbers
-\titleformat{\chapter}[hang]{\normalfont\fillast\bfseries}{\MakeUppercase{\chaptertitlename} \thechapter: }{0em}{\MakeUppercase}[\thispagestyle{empty}]
+% Omit page numbers (RJN: I don't think I want this, commented out)
+% \titleformat{\chapter}[hang]{\normalfont\fillast\bfseries}{\MakeUppercase{\chaptertitlename} \thechapter: }{0em}{\MakeUppercase}[\thispagestyle{empty}] % ORIGINAL
+\titleformat{\chapter}[hang]{\normalfont\fillast\bfseries}{\MakeUppercase{\chaptertitlename} \thechapter: }{0em}{\MakeUppercase} % RJN edit
 
 % Make section headings normal font size, bold
 \titleformat*{\section}{\normalfont\bfseries}

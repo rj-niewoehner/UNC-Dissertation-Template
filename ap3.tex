@@ -1,0 +1,112 @@
+\chapter{Chapter 3 Appendix -- The Value Behind Traffic}
+
+\section{Clinic Selection} \label{app_clinicSelection}
+ VaxCare provided information for all their clinic-partners from 15 US states. Of these, we observe traffic information for 315 clinics. Clinics may either initiate or terminate their partnership VaxCare during 2020, and so we take the following steps. First, we exclude clinics which report either no vaccination history pre-pandemic or no vaccinations post-pandemic; specifically, we exclude clinics which (a) report no immunizations before February 1 or (b) stop reporting immunizations before February 1, 2020. Second, we similarly exclude clinics which report no traffic history before February 1, 2020. We then exclude clinics which might skew our outcome variables in the early months of the pandemic; specifically, we exclude clinics who terminated their VaxCare partnership before July 1 and two clinics who exhibit greater than a 600\% in clinic traffic in March. Our sample consists of 247 clinics.
+ 
+ Of 247 clinics, we observe some clinics with low traffic or vaccination baselines. Because our outcomes are percentages of the baselines (see Section \ref{dv}), large changes in other variables for such clinics could disproportionately distort our outcome measures. As such, we also exclude clinics who average fewer than 15 patients per week or fewer than 2 shots per week. Our final sample consists of 172 clinics in 15 US states, observed from January 1 to August 31, 2020. 
+ 
+\section{Lasso Estimation Procedure} \label{app_lassoProc}
+
+ \noindent \textbf{Step 1.} Select a state. Within the state, observe all counties belonging to set $ \Gamma = \{1,2,...,P\}$ and all week observations $t=\{1,2,...,T\}$. \par
+ \noindent \textbf{Step 2.} Within the state, observe the county with the most adjacent in-state counties. Set variable $A$ equal to the number of adjacent counties for the county (see Table \ref{tab:app_lasso}, Column 3).  \par
+ \noindent \textbf{Step 3.} For the state, create a \textbf{long panel} of dimension $(T\times P) \times (P+1)$. Column 1 contains the date, Column 2 contains the personal mobility measures for each focal county $i$ (column $Z=M_i$), and the remaining columns contain mobility measures for all other counties in the state ($P-1$ columns: $M_{-i}= \Gamma \setminus \{i\}$). \par
+ \noindent \textbf{Step 4.} Exclude from $M_{-i}$ the $A$-closest counties to county $i$. This action ensures no counties will include adjacent counties as predictors (at a minimum) and all counties in the state will have the same number of input predictors. ($P-1-A$ columns: $\tilde{M} = M_{-i} \setminus \{A$-counties closest to county $i\}$) \par
+ \noindent \textbf{Step 5.} Perform 10-fold Lasso cross-validation on this long panel by solving Equation (\ref{eq_lasso}): Regress $Z$ on $\tilde{M}$ while varying $\lambda$. Per the convention of \cite{Friedman2010}, isolate the value of $\lambda$ which yields a mean-squared error within 1 standard error of the minimum mean-squared error in the panel ($\lambda_{1se}$). \par
+ \noindent \textbf{Step 6.} Slice the long panel into $P$ panels of dimension $T \times (P+1)$ (i.e., one panel for each county). \par
+ \noindent \textbf{Step 7.} Given one such panel for focal county $i$, perform Lasso regression by solving Equation (\ref{eq_lasso}): Regress $M_i$ on $\tilde{M}$ using $\lambda = \lambda_{1se}$. Generate predictions ($\hat{Z}_{it}^{lasso}$) for focal county $i$ mobility measures in week $t$. \par
+ \noindent \textbf{Step 8.} Repeat Step 7 $\forall i \in \Gamma$ using $\lambda_{1se}$ for the state. \par
+ \noindent \textbf{Step 9.} Repeat Steps 1 through 8 for all states, calculating a new $\lambda_{1se}$ for each state. \par
+ \noindent \textbf{Step 10.} Return $\hat{Z}^{lasso}$ as instruments for the 2SLS Estimation Procedure.
+
+ \begin{table}[htbp]
+ \resizebox{1\textwidth}{!}{ 
+ \begin{threeparttable}[t]
+  \centering
+  \caption{Total number of counties, number of excluded nearby counties ($A$), and median number of counties selected by Lasso Estimation Procedure for each State.}
+    \begin{tabular}{lcccc}
+    \textbf{State} & \textbf{Number of Counties} & \boldmath{}\textbf{$A$: Number of Adjacent Counties}\unboldmath{} & \multicolumn{2}{c}{\textbf{Median Number of Instruments}} \\
+          & (total) & (max) & (count) & (as \% of total) \\
+    Alabama & 67    & 9     & 19    & 28\% \\
+    Colorado & 64    & 11    & 15    & 23\% \\
+    Florida & 67    & 11    & 16    & 24\% \\
+    Georgia & 159   & 11    & 38    & 24\% \\
+    Illinois & 102   & 10    & 23    & 23\% \\
+    Indiana & 92    & 10    & 25    & 27\% \\
+    Kansas & 105   & 9     & 20    & 19\% \\
+    Kentucky & 120   & 9     & 40    & 33\% \\
+    Missouri & 115   & 9     & 18    & 16\% \\
+    New York & 62    & 9     & 13    & 21\% \\
+    Ohio  & 88    & 9     & 18    & 20\% \\
+    Oklahoma & 77    & 9     & 19    & 25\% \\
+    Pennsylvania & 67    & 10    & 15    & 22\% \\
+    South Carolina & 46    & 10    & 13    & 28\% \\
+    Texas & 254   & 10    & 41    & 16\% \\
+    \end{tabular}%
+    \medskip
+    % \begin{tablenotes}
+    %   \footnotesize
+    %   \item \textbf{Table Note:} Some table notes ...
+    % \end{tablenotes}
+  \label{tab:app_lasso}%
+  \end{threeparttable} }
+\end{table}%
+
+\newpage
+\begin{landscape}
+\section{Complete Regression Results} \label{app_vc2_fullReg}
+
+\begin{table}[htbp]
+  \resizebox{1\textwidth}{!}{ 
+  \begin{threeparttable}[t]
+  \centering
+  \caption{Complete Regression Results for Models with Clustered and Bootstrapped Standard Errors}
+    \begin{tabular}{lcccccccccccccccccc}
+          & (1)   & (2)   & (3)   & (4)   & (5)   & (6)   & (7)   & (8)   & (9)   & (10)  & (11)  & (12)  & (13)  & (14)  & (15)  & (16)  & (17)  & (18) \\
+    Outcome Variable & \textbf{All} & \textbf{All} & \textbf{All} & \textbf{Non-Vaccination} & \textbf{Non-Vaccination} & \textbf{Non-Vaccination} & \textbf{Vaccination} & \textbf{Vaccination} & \textbf{Vaccination} & \textbf{All} & \textbf{All} & \textbf{All} & \textbf{Non-Vaccination} & \textbf{Non-Vaccination} & \textbf{Non-Vaccination} & \textbf{Vaccination} & \textbf{Vaccination} & \textbf{Vaccination} \\
+          & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} & \textbf{Traffic} \\
+          &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &  \\
+    \textit{State Shutdown: Yes} & -8.323* & -0.153 & 1.342 & -6.657 & 1.194 & 3.088 & -13.73* & -10.10 & -10.64 & -8.323* & -0.153 & 1.342 & -6.657 & 1.194 & 3.088 & -13.73* & -10.10 & -10.64 \\
+          & (3.748) & (2.387) & (2.446) & (5.255) & (3.215) & (3.448) & (6.152) & (6.484) & (6.639) & (3.993) & (2.519) & (2.662) & (5.614) & (3.413) & (3.778) & (6.107) & (6.411) & (6.567) \\
+          & [0.0264] & [0.949] & [0.583] & [0.205] & [0.710] & [0.371] & [0.0256] & [0.119] & [0.109] & [0.0371] & [0.952] & [0.614] & [0.236] & [0.727] & [0.414] & [0.0246] & [0.115] & [0.105] \\
+    \textit{Personal Mobility} & 0.696*** & 0.663*** & 0.825*** & 0.560** & 0.497** & 0.707*** & 2.169*** & 2.359*** & 2.260*** & 0.696*** & 0.663*** & 0.825*** & 0.560** & 0.497** & 0.707*** & 2.169*** & 2.359*** & 2.260*** \\
+          & (0.119) & (0.118) & (0.108) & (0.174) & (0.179) & (0.149) & (0.228) & (0.249) & (0.245) & (0.124) & (0.115) & (0.0899) & (0.188) & (0.184) & (0.113) & (0.225) & (0.261) & (0.276) \\
+          & [4.78e-09] & [2.10e-08] & [0]   & [0.00130] & [0.00562] & [1.95e-06] & [0]   & [0]   & [0]   & [2.28e-08] & [7.19e-09] & [0]   & [0.00283] & [0.00709] & [4.00e-10] & [0]   & [0]   & [0] \\
+    \textit{Mobility $\times$ Shutdown} & -0.584*** & -0.275** & -0.0815 & -0.689*** & -0.373** & -0.125 & -0.137 & -0.120 & -0.213 & -0.584*** & -0.275** & -0.0815 & -0.689*** & -0.373** & -0.125 & -0.137 & -0.120 & -0.213 \\
+          & (0.135) & (0.102) & (0.103) & (0.141) & (0.130) & (0.116) & (0.274) & (0.285) & (0.310) & (0.144) & (0.106) & (0.110) & (0.157) & (0.144) & (0.130) & (0.278) & (0.297) & (0.316) \\
+          & [1.45e-05] & [0.00722] & [0.427] & [1.13e-06] & [0.00425] & [0.283] & [0.619] & [0.673] & [0.492] & [4.93e-05] & [0.00974] & [0.458] & [1.13e-05] & [0.00964] & [0.338] & [0.624] & [0.686] & [0.500] \\
+    \textit{New Covid Cases (lag)} &       & 1.310 & -3.360** &       & 0.859 & -4.739* &       & 2.122 & 1.439 &       & 1.310 & -3.360 &       & 0.859 & -4.739 &       & 2.122 & 1.439 \\
+          &       & (0.956) & (1.159) &       & (1.233) & (1.980) &       & (1.667) & (4.349) &       & (1.521) & (2.197) &       & (2.335) & (3.352) &       & (3.017) & (5.549) \\
+          &       & [0.170] & [0.00374] &       & [0.486] & [0.0167] &       & [0.203] & [0.741] &       & [0.389] & [0.126] &       & [0.713] & [0.157] &       & [0.482] & [0.795] \\
+    \textit{Mobility $\times$ Cases (lag)} &       &       & -0.131*** &       &       & -0.156*** &       &       & -0.0299 &       &       & -0.131 &       &       & -0.156 &       &       & -0.0299 \\
+          &       &       & (0.0372) &       &       & (0.0461) &       &       & (0.106) &       &       & (0.136) &       &       & (0.128) &       &       & (0.227) \\
+          &       &       & [0.000420] &       &       & [0.000737] &       &       & [0.779] &       &       & [0.336] &       &       & [0.223] &       &       & [0.895] \\
+    \textit{Covid Death Rate (lag)} &       & -0.749*** & -1.051*** &       & -0.753*** & -1.157*** &       & -0.364 & -0.0976 &       & -0.749*** & -1.051*** &       & -0.753*** & -1.157*** &       & -0.364 & -0.0976 \\
+          &       & (0.111) & (0.150) &       & (0.170) & (0.175) &       & (0.214) & (0.359) &       & (0.106) & (0.172) &       & (0.162) & (0.191) &       & (0.215) & (0.386) \\
+          &       & [0]   & [0]   &       & [1.00e-05] & [0]   &       & [0.0892] & [0.786] &       & [0]   & [1.08e-09] &       & [3.15e-06] & [1.30e-09] &       & [0.0910] & [0.801] \\
+    \textit{Mobility $\times$ Death Rate (lag)} &       &       & -0.0268*** &       &       & -0.0352*** &       &       & 0.0185 &       &       & -0.0268** &       &       & -0.0352** &       &       & 0.0185 \\
+          &       &       & (0.00593) &       &       & (0.00864) &       &       & (0.0141) &       &       & (0.00855) &       &       & (0.0134) &       &       & (0.0154) \\
+          &       &       & [6.11e-06] &       &       & [4.66e-05] &       &       & [0.188] &       &       & [0.00169] &       &       & [0.00839] &       &       & [0.231] \\
+    \textit{Hospital Utilization} & -128.0** & -59.43 & -76.26* & -152.9** & -74.45* & -95.01* & -31.42 & -40.91 & -40.47 & -128.0* & -59.43 & -76.26* & -152.9** & -74.45* & -95.01* & -31.42 & -40.91 & -40.47 \\
+          & (46.26) & (33.56) & (33.00) & (48.89) & (36.16) & (37.27) & (45.98) & (78.13) & (80.27) & (52.29) & (35.72) & (38.47) & (55.36) & (37.96) & (39.71) & (46.38) & (90.75) & (99.31) \\
+          & [0.00565] & [0.0766] & [0.0209] & [0.00176] & [0.0395] & [0.0108] & [0.494] & [0.601] & [0.614] & [0.0144] & [0.0961] & [0.0474] & [0.00575] & [0.0499] & [0.0167] & [0.498] & [0.652] & [0.684] \\
+    \textit{Unemployment Claims} & -0.0814** & -0.0497 & -0.0500 & -0.0991** & -0.0672 & -0.0671 & -0.00200 & 0.00512 & 0.00204 & -0.0814** & -0.0497 & -0.0500 & -0.0991* & -0.0672 & -0.0671 & -0.00200 & 0.00512 & 0.00204 \\
+          & (0.0260) & (0.0263) & (0.0259) & (0.0373) & (0.0413) & (0.0408) & (0.0430) & (0.0428) & (0.0428) & (0.0269) & (0.0268) & (0.0263) & (0.0404) & (0.0439) & (0.0431) & (0.0416) & (0.0425) & (0.0424) \\
+          & [0.00174] & [0.0588] & [0.0539] & [0.00778] & [0.104] & [0.0998] & [0.963] & [0.905] & [0.962] & [0.00252] & [0.0643] & [0.0571] & [0.0141] & [0.126] & [0.119] & [0.962] & [0.904] & [0.962] \\
+          &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &       &  \\
+    Model & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE & 2SLS - FE \\
+    Errors & Clustered & Clustered & Clustered & Clustered & Clustered & Clustered & Clustered & Clustered & Clustered & Bootstrap & Bootstrap & Bootstrap & Bootstrap & Bootstrap & Bootstrap & Bootstrap & Bootstrap & Bootstrap \\
+    Bootstrap Repititions & -     & -     & -     & -     & -     & -     & -     & -     & -     & 500   & 500   & 500   & 500   & 500   & 500   & 500   & 500   & 500 \\
+    Weekly Observations & 3,317 & 3,145 & 3,145 & 3,317 & 3,145 & 3,145 & 3,317 & 3,145 & 3,145 & 3,317 & 3,145 & 3,145 & 3,317 & 3,145 & 3,145 & 3,317 & 3,145 & 3,145 \\
+    No. Clinics & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172   & 172 \\
+    \end{tabular}%
+    \medskip
+    \begin{tablenotes}
+      \footnotesize
+      \item \textbf{Table Note:} Includes observations from March 1 to 60-days after state-wide shutdown order lifted. Coefficient values represent x.xxx\% changes from a pre-pandemic baseline. \textit{Personal Mobility} is presented as an elasticity where a 1-unit change corresponds to a 1\% change. All models include clinic fixed effects and the control variables discussed in Section \ref{controls} with two-sided p-values reported in brackets. Robust standard errors clustered at the clinic level and reported in parentheses in Columns (1) - (9). Bootstrapped standard errors using 500 samples are reported in parentheses in Columns (10) - (18). (*** $p < 0.001$, ** $p < 0.01$, * $p < 0.05$)
+    %   \item (*** $p < 0.001$, ** $p < 0.01$, * $p < 0.05$)
+    \end{tablenotes}
+  \label{tab:fullreg}
+  \end{threeparttable} }
+ \end{table}
+
+\end{landscape}

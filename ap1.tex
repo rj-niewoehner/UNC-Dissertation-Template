@@ -1,6 +1,6 @@
-\chapter{Chapter 1 Appendix -- Focusing Provider Attention}
+\chapter{Chapter 1 Appendix -- Focusing Provider Attention} \label{app_cc}
 
-\section{Pilot Study (2017)}
+\section{Pilot Study (2017)} \label{app_cc_pilot}
 \subsection{Pilot Study Description}
 In August 2017, VaxCare piloted a program aimed at increasing influenza vaccination in their clinic partners. This pilot program launched in the state of Florida and 101 clinics were recruited to participate for the 2017 flu vaccination season. The VaxCare program direction selected the treated clinics based on clinic history. Outside of the program, 68 other Florida clinics served as a control group. 
 
@@ -94,7 +94,7 @@ As mentioned in Section \ref{cc_setup}, the treated clinics received an automate
 These emails contained the following elements. At the very top, the emails prominently highlighted each clinics’ specific treatment information, either flu shot percent growth or clinic rank. Next, clinics in both treatments received a growth table which outlined how many clinics shots were given by month either in 2017 (prior to the intervention) or in 2018 (during the intervention). Finally, the emails to the Rebate clinics also contained each vaccination threshold which corresponded to each of the three incentive tiers. For example, a clinic that administered 360 shots by the end of 2017 (as displayed in the growth table) would receive a Tier 1 threshold set at 396 shots corresponding to 10\% growth. The Rebate clinics received tiered incentive thresholds with rebates of \$1, \$2, and \$3 per shot awarded for achieving the targets set at 10\%, 15\%, and 20\% Year-over-Year flu shot growth. Rebate clinics who surpassed the tiered thresholds received that tier’s rebates for all shots given, including shots given before surpassing the threshold.
 
 
-\section{Sensitivity and Test of Randomization}
+\section{Sensitivity and Test of Randomization} \label{app_cc_sens}
 “The most credible and influential research designs use random assignment” \citep[p. 11]{Angrist2009}. Though ubiquitous in medicine, the Randomized Controlled Trial (RCT) has become more common in many academic disciplines, including economics, social science, and operations. And yet, even the “gold standard” of causal inference is not without assumptions. The purpose of this Appendix is to acknowledge any limitations and provide evidence that the findings presented in the remainder of the paper can still be considered valid. We refer interested readers to an extensive discussion of the limits of RCTs presented in \cite{Deaton2018}. 
 
 As detailed in \cite{Deaton2018}, in order to estimate an unbiased average treatment effect (ATE), the researcher must assume balance between treated and non-treated subjects (or clinics). Proper randomization provides this balance in expectation \citep[p. 4]{Deaton2018}, assuming an infinite sample and an infinite number of randomizations. Practically, it is impossible to perform an infinite number of randomizations among an infinite sample, and any actual RCT must accept this as a limitation – that the estimated ATE is only unbiased in expectation. Researchers can, however, test for balance among observable covariates. 
@@ -217,7 +217,7 @@ We match clinics and evaluate the outcome at the conclusion of our study. Starti
 After matching, the Rebate clinics show no statistically significant difference from their matched Control clinics, in line with our previous findings. For the Ranking clinics, however, we do see a statistically significant treatment effect: The Ranking clinics grew flu shots by 15.8\% more than their matched Control clinics. The magnitude of this effect is even more noteworthy, as only one comparison is made at the end of the year, whereas Specification 1 and Specification 4 evaluate the cumulative impact of the treatment over the entire season. We proceed to evaluate our regression models while only including the clinics with common support.
 
 \subsection*{Robustness Test 2: Random Effects Regression Models} 
-After excluding the clinics without common support, we are left with 136 clinics. We proceed to test the sensitivity of our findings to including or excluding the 4 clinics without common support. We tested our primary outcome measure (weekly percent growth of clinics over the 2018 vaccination season, or \textit{PercentGrowth} from Section \ref{emp_spec_pctGrowth}) and our alternate outcome measure (Cumulative Shots per Patient-Population, or \textit{CumSPP} from Section \ref{cc_alt_dv}). The econometric specifications follow the main text, and we continue to cluster the errors at the clinic level.
+After excluding the clinics without common support, we are left with 136 clinics. We proceed to test the sensitivity of our findings to including or excluding the 4 clinics without common support. We tested our primary outcome measure (weekly percent growth of clinics over the 2018 vaccination season, or \textit{PercentGrowth} from Section \ref{emp_spec_pctGrowth}) and our alternate outcome measure (Cumulative Shots per Patient-Population, or \textit{CumSPP} from Section \ref{app_cc_alt_dv}). The econometric specifications follow the main text, and we continue to cluster the errors at the clinic level.
   \begin{equation} \tag{1} %\begin{split} %\end{split} 
       PercentGrowth_{it} = \beta_0 + \beta_1 TreatmentGroup_i + ClinicState_i + PatientCount_i + \epsilon_{it} 
   \end{equation}
@@ -227,7 +227,7 @@ After excluding the clinics without common support, we are left with 136 clinics
   \end{split}  \end{equation}
   
 
-Table \ref{tab:te_w_cs} presents the results of these regressions. Our results from Section \ref{cc_res_pctGrowth} (Specification 1) and Section \ref{cc_alt_dv} (Specification 4) are included in Columns 1 and 3 for comparison. The results from Column 2 show, on average, the Ranking clinics grew by approximately 7.9\% more than the Control clinics ($p < 0.05$) while the Rebate clinics show no meaningful difference in growth from the control. Furthermore, the results from Column 3 for Shots per Patient-Population show, on average, the Ranking clinics vaccinated 4.6\% more of their respective patient population than the Control clinics while the Rebate clinics show no meaningful difference. These results are nearly identical, though with slightly less precision in the smaller clinic sample. 
+Table \ref{tab:te_w_cs} presents the results of these regressions. Our results from Section \ref{cc_res_pctGrowth} (Specification 1) and Section \ref{app_cc_alt_dv} (Specification 4) are included in Columns 1 and 3 for comparison. The results from Column 2 show, on average, the Ranking clinics grew by approximately 7.9\% more than the Control clinics ($p < 0.05$) while the Rebate clinics show no meaningful difference in growth from the control. Furthermore, the results from Column 3 for Shots per Patient-Population show, on average, the Ranking clinics vaccinated 4.6\% more of their respective patient population than the Control clinics while the Rebate clinics show no meaningful difference. These results are nearly identical, though with slightly less precision in the smaller clinic sample. 
 
 Given the results of both tests, along with our verification of common support, we conclude that we do have balance in our groups and our treatment effects are not sensitive to clinic profiles, affirming the validity and robustness of our randomization efforts. 
 
@@ -260,7 +260,7 @@ Given the results of both tests, along with our verification of common support, 
  \end{table}
 
 
-\section{Alternate Dependent Variable} \label{cc_alt_dv}
+\section{Alternate Dependent Variable} \label{app_cc_alt_dv}
 When comparing clinic outcomes during Compliance Care, one must remember that clinics vary in size and capacity to deliver flu shots. Some clinics can administer 2,000 flu shots in a flu season, while others might only deliver 200 shots. Our primary dependent variable accounts for these factors by normalizing for Year-over-Year flu shot percent growth. As an alternate approach, we divide the cumulative number of weekly flu shots given by each clinics’ total patient population over the vaccination season (all patients who sought any clinic service) - Shots per Patient-Population. This metric addresses this consideration by normalizing by patient volume for large and small clinics. In line with a difference-in-differences approach, we interact a factor variable for treatment with an indicator variable for year. The resulting output measures the difference between the groups by year.  
   \begin{equation} \tag{4} \begin{split}
        CumSPP{it} = \beta_0 & + \beta_1 TreatmentGroup_i \times Year_t \\
@@ -298,12 +298,12 @@ As in Section \ref{cc_res_comp}, we conservatively focus on the clinics with com
   \end{threeparttable} }
  \end{table}
 
-\section{Rank Response Sensitivity Analysis}
+\section{Rank Response Sensitivity Analysis} \label{app_cc_rankResp_sens}
 Given the results of Specification 3 in Section \ref{cc_res_rankResp}, we proceed to test the sensitivity of our conclusions for various definitions of first and last place. To evaluate our thresholds, we fix one parameter at the original definition and vary the other. For example, we reserve the high rank flag for clinics ranked in the top 5 but then relax and restrict the threshold for the bottom ranked clinics to test Last-Place Aversion. This test will also confirm or deny our lack of evidence for First-Place Loving behavior in the previous analysis (Section \ref{cc_res_rankResp}). We use the same outcome variable as defined in Section \ref{emp_spec_pctGrowth} (weekly shots per patient-population metric).
 
 For various definitions of last place, please see Table \ref{tab:sensitivity_def_last}. We restrict our definition of last to only consider the lowest rank ($LowRank = 1$ if Rank $\in$ [46,46]) and relax our definition to consider clinics ranking in bottom 11 ranks ($LowRank = 1$ if Rank $\in$ [36,46]). We find statistically significant evidence for Last-Place Aversion even when relaxing the definition to consider clinics ranked in the bottom 10 ($p < 0.05$). Furthermore, evidence for Last-Place Aversion eventually vanishes. This is a welcome addition, as we would not expect Last-Place Aversion to exist for all definitions of last place. 
 
-For various definitions of first place, please see Table \ref{tab:sensitivity_def_first}. We restrict our definition of first to only consider the top rank ($HighRank = 1$ if Rank $\in$ [1,1]) and relax our definition to consider the top 10 ranks ($HighRank = 1$ if Rank $\in$ [1,10]). The results are statistically significant when first place is defined as either of the top two ranks ($p < 0.01$ in Column 1 and $p < 0.10$ in Column 2); in all other definitions, the results are not statistically significant. Thus, if we restrict our definition of first place, we may have evidence of First-Place Loving behavior. However, in light of the robustness check in Section \ref{cc_grp_robust}, we cannot conclude this is not an artifact of some other unobservable behavior. Thus, we conclude that we do not have sufficient evidence to identify First-Place Loving behavior.
+For various definitions of first place, please see Table \ref{tab:sensitivity_def_first}. We restrict our definition of first to only consider the top rank ($HighRank = 1$ if Rank $\in$ [1,1]) and relax our definition to consider the top 10 ranks ($HighRank = 1$ if Rank $\in$ [1,10]). The results are statistically significant when first place is defined as either of the top two ranks ($p < 0.01$ in Column 1 and $p < 0.10$ in Column 2); in all other definitions, the results are not statistically significant. Thus, if we restrict our definition of first place, we may have evidence of First-Place Loving behavior. However, in light of the robustness check in Section \ref{app_cc_grp_robust}, we cannot conclude this is not an artifact of some other unobservable behavior. Thus, we conclude that we do not have sufficient evidence to identify First-Place Loving behavior.
 
 In summary, we find (1) our findings for First-Place Loving behavior are sensitive to our definition of “first” place and (2) our findings for Last-Place Aversion are not sensitive to our definition of “last place.” Thus, we find increasing evidence in support of Hypothesis 4. 
 
@@ -393,7 +393,7 @@ In summary, we find (1) our findings for First-Place Loving behavior are sensiti
  \end{table}
 
 \newpage
-\section{Rank Response – Robustness to Group Setting} \label{cc_grp_robust}
+\section{Rank Response – Robustness to Group Setting} \label{app_cc_grp_robust}
 As discussed in Section \ref{rpf_robust}, we must consider mean reversion as an alternative mechanism for our findings. To test for this, we artificially ranked the clinics in the Control group (with respect to each other) and the clinics in the Rebate group (with respect to each other). We then applied our weekly shots per patient-population metric (defined in Section \ref{emp_spec_pctGrowth}) to the Control and Rebate clinics via Specification 2 and Specification 3, similar to a placebo test. 
 \subsection{Specification 2: Results for Control and Rebate Clinics}
 Table \ref{tab:art_ranks_reb_ctrl} contains the results of applying Specification 2 to the Rebate and Control groups. For the Rebate and Control group, not only are the coefficient magnitudes insignificant, but the coefficient signs are also different from the Ranking group, indicating a completely different function (i.e., not a U-shaped First-Place Loving/Last-Place Aversion curve) is (poorly) fitted to these two groups.

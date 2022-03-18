@@ -1,12 +1,12 @@
 \chapter{Chapter 2 Appendix -- Task Selection and Patient ``Pick-up"}
 
 % \newpage
-\section{Appendix - Data Trimming} \label{app_pu_Trim}
+\section{Data Trimming} \label{app_pu_Trim}
  Because we are interested in the impact of group familiarity, we first remove all observations where only one provider was observed during a given hour. Such observations are of a “group” of 1 with no possible familiarity. Second, to mitigate the presence of some outliers in the data which may follow data entry errors or miscoding, we trim the data to contain only up to the 97th percentile of patient length of stay (dropping 1,276 observations with visits longer than about 24 hours) and any observations which contain patient wait times greater than 400 minutes (approximately the 99th percentile, dropping 392 observations). Additionally, 72 observations do not include an indication of patient severity upon arrival to the ED. As such information is critical to a physician’s decision to pick-up a patient, we also drop such observations. Finally, we drop 6 observations which list the discharge time before the pick-up time and 208 observations where the pick-up is listed as the same the the arrival time, as duration analysis cannot be performed on observations with zero time-to-failure. After trimming, we are left with 40,617 observations. 
  
 
 % \newpage
-\section{Appendix - Example Panels} \label{app_pu_examples}
+\section{Example Panels} \label{app_pu_examples}
 
 \begin{table}[htbp]
   \resizebox{1\textwidth}{!}{ 
@@ -78,7 +78,7 @@
  \end{table}
 
 % \newpage
-\section{Appendix - Full Regression Results} \label{pu_full_reg}
+\section{Full Regression Results} \label{pu_full_reg}
 
 \begin{table}[htbp]
   \resizebox{1\textwidth}{!}{ 
@@ -159,7 +159,7 @@
  \end{table}
 
 % \newpage
-\section{Appendix - Time Between Patients} \label{app_pu_hazard_between}
+\section{Time Between Patients} \label{app_pu_hazard_between}
  As an alternative to the models for Patient Pick-up Rate presented in Section \ref{em_spec} and the results presented in Section \ref{results_H1}, we present a similar model here which examines time the between pick-ups for a given physician within a given shift. Because the model also focuses on elapsed time, we can leverage a duration model similar to the models presented in Section \ref{spec_hazard}. As above, we apply an accelerated-failure-time (AFT) model, a form of parametric duration (or hazard) regression:
   \begin{equation}
   h(t|\boldsymbol{X_{it}}) = h_0(t) \exp(\boldsymbol{X_{it}} \boldsymbol{\beta})

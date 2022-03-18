@@ -1,25 +1,28 @@
-\chapter{Task Selection and Patient “Pick-up" -- How Familiarity Encourages Physician Multitasking in the Emergency Department} 
-This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
+\chapter{Task Selection and Patient “Pick-up"} 
 
-\begin{abstract} 
-\noindent
- \textbf{Background:} Patient demand for emergency medical services continues to rise from all-time highs. Physicians generally respond to the rising demand by increasing their level of multitasking. \\
- \textbf{Aim:} What leads Emergency Department physicians to select which patients, and how many patients, they will treat? Queuing models frequently assume individual servers operate independently of other servers. In contrast, we consider how familiarity between peer physicians affects patient selection and the chosen multitasking level, a process more commonly known in the ED as “patient pick-up." \\
- \textbf{Methods:} Using empirical observations from two Emergency Departments, we explore whether familiarity alters patient pick-up behavior, we determine the effect of familiarity on multitasking, and we measure the combined impact of familiarity and multitasking on other ED outcomes. \\
- \textbf{Results:} Among ED physicians, greater average familiarity leads to an increase in patient pick-up rate, observed multitasking, and shorter patient wait time -- with no identifiable, negative impact to patient processing time or length of stay. Moreover, the effects intensify at the end of a physician’s shift and for patients in severe condition. \\ 
- \textbf{Conclusion:} Within more familiar groups, physicians appear willing to exert more effort. Our study explicates how the benefits materialize and illustrates why researchers must consider server familiarity moving forward. \\
-\end{abstract}
+% \begin{tabular}{c}
+    \textbf{Task Selection and Patient “Pick-up" -- How Familiarity Encourages Physician Multitasking in the Emergency Department.}
+    This Chapter is co-authored with Dr. Diwas KC (Emory University) and Dr. Bradley Staats.
+% \end{tabular}
 
+% \begin{center} \rule{6in}{0.01in} \end{center}
+% \noindent
+%  \textbf{Chapter Abstract:} \\
+%  \textbf{Background:} Patient demand for emergency medical services continues to rise from all-time highs. Physicians generally respond to the rising demand by increasing their level of multitasking. \\
+%  \textbf{Aim:} What leads Emergency Department physicians to select which patients, and how many patients, they will treat? Queuing models frequently assume individual servers operate independently of other servers. In contrast, we consider how familiarity between peer physicians affects patient selection and the chosen multitasking level, a process more commonly known in the ED as “patient pick-up." \\
+%  \textbf{Methods:} Using empirical observations from two Emergency Departments, we explore whether familiarity alters patient pick-up behavior, we determine the effect of familiarity on multitasking, and we measure the combined impact of familiarity and multitasking on other ED outcomes. \\
+%  \textbf{Results:} Among ED physicians, greater average familiarity leads to an increase in patient pick-up rate, observed multitasking, and shorter patient wait time -- with no identifiable, negative impact to patient processing time or length of stay. Moreover, the effects intensify at the end of a physician’s shift and for patients in severe condition. \\ 
+%  \textbf{Conclusion:} Within more familiar groups, physicians appear willing to exert more effort. Our study explicates how the benefits materialize and illustrates why researchers must consider server familiarity moving forward.
+% \begin{center} \rule{6in}{0.01in} \end{center}
 % \noindent\keywords{Healthcare, Discretion, Productivity, Familiarity, Empirical Operations} \\
 
-
+\section{Introduction} 
 \begin{quote}
     \textit{Two are better than one, because they have a good reward for their toil. \\
     For if they fall, one will lift up the other.} \\
     (Jewish Proverb) % \medskip
 \end{quote}
 
-\section{Introduction} 
  Patient demand for emergency medical services has never been greater. In the U.S., as fewer people access medical care through a primary care provider, more people access care through the hospital emergency department, or ED \citep{Greenwood-Ericksen2019,Ganguli2020}. Between 1993 and 2006 the proportion of hospital patients admitted through the ED rose by more than 30\% \citep{Schurr2012}. And though structural reductions in overcrowding can yield significant health benefits \citep{Woodworth2019}, usually ED physicians must simply “do more, with less." And so the physicians respond by increasing their level of multitasking, an important driver of operational performance in service operations and queuing systems \citep[][]{KC2014,KC2020_productivity}.
  
  Unlike other types of queuing systems, however, the ED allows physicians discretion in task selection \citep{KC2020_tcp}. That is, ED queues do not operate solely under a policy of “first-come, first-served, by severity;" such a setup yields significant productivity benefits over alternatives \citep{Chan2016}. What, then, leads physicians to select which patients, and how many patients, they will treat? For one, strong intrinsic motivation drives many clinicians to serve \citep{Madara2015}. But there are also pressures to perform \citep{Mas2009} and temptations to slack-off \citep{Karau1993}. The ED also epitomizes an environment of social exchange \citep{Homans1961,Blau1964} and reciprocity \citep{Gouldner1960}: “I'll take this patient if you take the next one." One aspect common in all such contexts is coworker \textit{familiarity}. In our study, we consider how familiarity between peer physicians in the ED affects patient selection and the chosen multitasking level, a process more commonly known as “patient pick-up."
@@ -31,7 +34,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
      \caption{Average physician multitasking (i.e., patient load) increases with greater familiarity.} \medskip
      \includegraphics[scale=1]{Figures/PU/Load v. Fam (Xtile).png}     
      \label{fig:load_fam}
-    %  \floatfoot{\textit{Note:} Logarithmic smoothing trend plotted in blue. }
+    %  \floatfoot{\textit{Figure Note:} Logarithmic smoothing trend plotted in blue. }
  \end{figure}
 
  We seek to answer the following research questions. First: When picking up patients from a common pool, does familiarity among ED physicians alter the patient pick-up process? A physician initiates “patient pick-up" when she selects a waiting patient and begin treatment (see full discussion in Section \ref{emp_context}). Second: Does familiarity among ED physicians alter multitasking behavior? And finally: What other ED factors change with familiarity and altered pick-up decisions? Using observations from two EDs, Figure \ref{fig:load_fam} motivates our research questions. Observe higher familiarity deciles correspond to greater levels of physician multitasking, measured as “the number of distinct patients cared for by a physician at a given point in time" \citep[p. 169]{KC2014}. Building on such an insight, (i) we explore whether familiarity alters patient pick-up behavior, (ii) we determine the effect of familiarity on multitasking, and (iii) we measure the combined impact of familiarity and multitasking on other ED outcomes.
@@ -75,7 +78,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
      \caption{The effect of Familiarity on the Patient Pick-up Decision, Physician Multitasking, and other ED outcomes.} \medskip
      \includegraphics[scale=.8]{Figures/PU/Path Diagram.png}     
      \label{fig:path}
-    %  \floatfoot{\textit{Note:} ... some figure notes. }
+    %  \floatfoot{\textit{Figure Note:} ... some figure notes. }
  \end{figure}
  
  \subsubsection{Familiarity \& Pick-up: A Link to Productivity}
@@ -148,7 +151,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
     \medskip
     \begin{tablenotes}
       \footnotesize
-      \item \textit{Note:} For Patient Pick-up Rate, because of data aggregation, the unit of analysis is the hospital-day-hour-provider ($n$ = 23,909). For all other variables the unit of analysis is an individual patient pick-up ($n$ = 40,617). 
+      \item \textit{Table Note:} For Patient Pick-up Rate, because of data aggregation, the unit of analysis is the hospital-day-hour-provider ($n$ = 23,909). For all other variables the unit of analysis is an individual patient pick-up ($n$ = 40,617). 
     %   \item (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
     \end{tablenotes}
     \end{threeparttable} } \medskip %
@@ -171,9 +174,9 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
  \begin{figure}[!b]
      \centering
      \caption{Typical Emergency Department Process Flow } \smallskip
-     \includegraphics[scale=.72]{Figures/PU/ED Patient Flow-ED Patient Flow.png}     
+     \includegraphics[scale=.7]{Figures/PU/ED Patient Flow-ED Patient Flow.png}     
      \label{fig:ed_flow}
-     \floatfoot{\textit{Note:} Patient pick-up occurs with first MD visit (solid gray square). }
+     \floatfoot{\textit{Figure Note:} Patient pick-up occurs with first MD visit (solid gray square). }
  \end{figure}  
  
  For the patient, the process begins with arrival. Upon arriving to the ED, he first interacts with a triage nurse, who assigns each patient a triage acuity level based on the Emergency Severity Index (ESI); triage levels range from 1 to 5 with ESI-1 patients being the most severe patients who should be seen immediately. The nurse also notes the patient’s chief complaint and creates an electronic record for review by the physicians currently on duty. After triage, a patient who chooses to wait then waits until a physician on duty selects to oversee treatment, after which the patient is moved to an ED room and the physician starts treatment. If a patient elects not to wait, he may “leave without being seen” (LWBS), a concept analogous to queue abandonment. In the U.S., national LWBS rates average 1.7\% \citep{Pham2009,Moe2016}, though the rates are further exacerbated by ED crowding \citep{Batt2015}. Although we only consider patients who ultimately encounter a physician, patients who LWBS present an ongoing research problem both in medicine and operations \citep{Saghafian2015,Song2018}. 
@@ -193,7 +196,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
  \subsection{Explanatory Variable}
  Formally, we define \textit{average familiarity} for the physician $i$ in physician-group $G$ composed of physician-pairs $p$ during the current hour $h$ which contains the patient pick-up which occurs at time $t$ (day-hour-minute):
  \begin{equation} \label{eq_fam}
-     AverageFamiliarity_{it} = \frac{ \sum_{p \in G} \sum_{s=1}^t Joint\_PickUp_{ps} }{ N_h * (N_h-1)/2 }
+     AverageFamiliarity_{it} = \frac{ \sum_{p \in G_h} \sum_{s=1}^t Joint\_PickUp_{ps} }{ N_h * (N_h-1)/2 }
  \end{equation}
  \noindent 
  Specifically, we take the following steps. First, we consider each hour $h$ in our data. Second, we note all physicians who pick up a patient within the hour; such physicians represent the hour’s physician group ($G_h$, see Section \ref{grp_con}). Third, we cumulatively sum all previous pairwise familiarity ($Joint\_PickUp$) for each physician pair $p$ in the group for patient pick-ups from the start of the data ($s=1$) up to time $t$. Fourth, we sum the pairwise familiarities for all physician pairs in the group ($p \in G_h$). Fifth, in line with literature on average familiarity, we divide the sum of pairwise familiarities for all group pairs by $N_h*(N_h-1)/2$, where $N_h$ represents size of group $G_h$ during hour $h$. Please see Appendix \ref{app_pu_examples} for an example panel which illustrates the construction of our variables in a hypothetical panel. As in previous literature \citep[e.g.,][]{Avgerinos2017}, we log-transform average familiarity and only consider familiarity gained prior to the current patient pick-up in our models in Section \ref{em_spec}.
@@ -257,7 +260,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
   
 \section{Results} \label{Results_PU}
  \subsection{H1: Familiarity \& Patient Pick-up} \label{results_H1}
- To start, we seek to answer the question: Does familiarity affect patient pick-up? We propose the task selection decision (i.e., patient pick-up) provides a channel through which familiarity can affect other ED outcomes, such as multitasking. When patients are waiting in the waiting room and a physician has spare capacity, a physician faces a choice: (a) “Should I pick up another patient?" or (b) “Should I forgo this opportunity and focus on my current patients, leaving waiting patients for later or for another physician?" We model the effect of familiarity on such a decision in two ways: First, by considering whether familiarity increases an aggregate measure of ED flow rate (measured in patients per hour), and second, by considering whether familiarity increases the \textit{likelihood} of (a) while still considering patient heterogeneity as an input. Table \ref{tab:H1H2}, Columns (1) and (2) present the results; full regression results can also be found in Appendix \ref{pu_full_reg}. 
+ To start, we seek to answer the question: Does familiarity affect patient pick-up? We propose the task selection decision (i.e., patient pick-up) provides a channel through which familiarity can affect other ED outcomes, such as multitasking. When patients are waiting in the waiting room and a physician has spare capacity, a physician faces a choice: (a) “Should I pick up another patient?" or (b) “Should I forgo this opportunity and focus on my current patients, leaving waiting patients for later or for another physician?" We model the effect of familiarity on such a decision in two ways: First, by considering whether familiarity increases an aggregate measure of ED flow rate (measured in patients per hour), and second, by considering whether familiarity increases the \textit{likelihood} of (a) while still considering patient heterogeneity as an input. Table \ref{tab:pu_H1H2}, Columns (1) and (2) present the results; full regression results can also be found in Appendix \ref{pu_full_reg}. 
   % Or, in other words, what is the intermediate action by which familiarity might affect other ED outcomes, such as multitasking?
  % Our previous finding provokes the following question: How does familiarity increase physician multitasking? 
  
@@ -266,7 +269,7 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
  As a check for consistency, Appendix \ref{app_pu_hazard_between} presents an alternative to modeling patient pick-up rate (specifications (\ref{eqn_pu_rate_1}) and (\ref{eqn_pu_rate_2})) by modeling the effect of familiarity on the time between patient pick-ups for a physician. Our conclusions hold here, as the results show an increase in familiarity also reduces the time between pick-ups ($p < 0.01$).
  
  \subsection{H2: Familiarity \& Multitasking}
- Since we have shown familiarity does affect the patient pick-up decision, we then consider the effect of familiarity on physician multitasking levels. Table \ref{tab:H1H2}, Column (3) reports the results of the model. We see familiarity has a positive and statistically significant ($p < 0.01$) effect on physician multitasking. The Average Partial Effect shows a 1\% increase in average familiarity leads to an increase in physician multitasking by 0.141 patients. That is, when a physician is working with more familiar peers, she increases her patient load, or the number of patients she is willing to treat at any given time. Relative to the median physician multitasking load of 4 patients, the effect corresponds to a 3.5\% increase in physician multitasking. The finding supports Hypothesis 2: Greater average familiarity increases physician multitasking in the ED.
+ Since we have shown familiarity does affect the patient pick-up decision, we then consider the effect of familiarity on physician multitasking levels. Table \ref{tab:pu_H1H2}, Column (3) reports the results of the model. We see familiarity has a positive and statistically significant ($p < 0.01$) effect on physician multitasking. The Average Partial Effect shows a 1\% increase in average familiarity leads to an increase in physician multitasking by 0.141 patients. That is, when a physician is working with more familiar peers, she increases her patient load, or the number of patients she is willing to treat at any given time. Relative to the median physician multitasking load of 4 patients, the effect corresponds to a 3.5\% increase in physician multitasking. The finding supports Hypothesis 2: Greater average familiarity increases physician multitasking in the ED.
  
 \begin{table}[htbp]
   \resizebox{.9\textwidth}{!}{ 
@@ -303,10 +306,10 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
     \medskip
     \begin{tablenotes}
       \footnotesize
-      \item \textbf{Table Note:} Robust standard errors clustered at the physician level reported in parentheses. Models include controls listed in Section \ref{em_spec}. Pick-up Rate measured in patient pick-ups per hour. Results reported in Column (1) aggregate observations to the hourly level, thus omitting patient specific characteristics as discussed in Section \ref{spec_linear}. Abbreviations: APE (Average Partial Effect), Phys. (Physician), FE (Fixed Effect), Hosp. (Hospital), ToD (Time of Day), DoW (Day of Week). % (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
-      \item (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
+      \item \textbf{Table Note:} Robust standard errors clustered at the physician level reported in parentheses. Models include controls listed in Section \ref{em_spec}. Pick-up Rate measured in patient pick-ups per hour. Results reported in Column (1) aggregate observations to the hourly level, thus omitting patient specific characteristics as discussed in Section \ref{spec_linear}. Abbreviations: APE (Average Partial Effect), Phys. (Physician), FE (Fixed Effect), Hosp. (Hospital), ToD (Time of Day), DoW (Day of Week). (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
+    %   \item (*** $p < 0.01$, ** $p < 0.05$, + $p < 0.1$)
     \end{tablenotes}
-  \label{tab:H1H2}
+  \label{tab:pu_H1H2}
   \end{threeparttable} }
  \end{table}
  
@@ -362,16 +365,16 @@ This Chapter is co-authored with Dr. Diwas KC and Dr. Bradley Staats
  
  Indeed, we found this to be true. But then we wonder: Might the pick-up rate increase more for some portion of a shift? \cite{Ouyang2021} demonstrate the importance of considering “... shift-hour-dependent service rates in ED modeling and staffing" (p. 25). \cite{Deo2019} find an increase in service rate among clinicians at the end of the workday while \cite{Chan2018} finds some physicians “slack off" at the end of a shift. At the end of a shift the physician must choose: “Do I continue working and pick up more patients, or if I have finished my shift, do I go home?” Although all patients who do not leave without being seen are eventually picked up, organizational factors (e.g., shift changes), human behavior, and physician discretion collide at just this point in time. As such, we propose some effects of familiarity might intensify at the end of the shift.
  
- In our context, we focus on the last observed hour of a shift for each physician, which \cite{Ouyang2021} refers to as the “end-of-shift phase." We do find familiarity increases the patient pick-up rate even more during this window. A 1\% increase in familiarity corresponds to an increase of 0.0691 patient pick-ups per hour during the last observed hour of the shift ($p < 0.01$). Relative to the median pick-up rate of 2 patients per hour, the increase corresponds to a 3.5\% uptick in pick-up rate, or more than double the increase listed in Table \ref{tab:H1H2} (see comparison in Figure \ref{fig:coef_plot}). As such, we find even stronger effects of familiarity on pick-up rate at the end of a physicians' shift. 
+ In our context, we focus on the last observed hour of a shift for each physician, which \cite{Ouyang2021} refers to as the “end-of-shift phase." We do find familiarity increases the patient pick-up rate even more during this window. A 1\% increase in familiarity corresponds to an increase of 0.0691 patient pick-ups per hour during the last observed hour of the shift ($p < 0.01$). Relative to the median pick-up rate of 2 patients per hour, the increase corresponds to a 3.5\% uptick in pick-up rate, or more than double the increase listed in Table \ref{tab:pu_H1H2} (see comparison in Figure \ref{fig:pu_coef_plot}). As such, we find even stronger effects of familiarity on pick-up rate at the end of a physicians' shift. 
  
- We also observe other effects of familiarity intensify regardless of shift timing. With greater familiarity, physicians seem more willing to accept an increase in load for more severe patient cases. For the most severe patients (ESI-1), more familiarity yields slightly more multitasking (+0.161, $p < 0.01$), but as depicted in Figure \ref{fig:coef_plot}, the likelihood of an additional pick-up changes dramatically. For ESI-1 patients, the Average Partial Effect of a 1\% increase in familiarity yields a 2.2\% increase patient pick-up likelihood ($p < 0.01$) -- more than double the effect listed in Table \ref{tab:H1H2}. The implication: If a patient arrives who needs immediate care, a physician working alongside familiar colleagues is more likely to pick-up such a patient.
+ We also observe other effects of familiarity intensify regardless of shift timing. With greater familiarity, physicians seem more willing to accept an increase in load for more severe patient cases. For the most severe patients (ESI-1), more familiarity yields slightly more multitasking (+0.161, $p < 0.01$), but as depicted in Figure \ref{fig:pu_coef_plot}, the likelihood of an additional pick-up changes dramatically. For ESI-1 patients, the Average Partial Effect of a 1\% increase in familiarity yields a 2.2\% increase patient pick-up likelihood ($p < 0.01$) -- more than double the effect listed in Table \ref{tab:pu_H1H2}. The implication: If a patient arrives who needs immediate care, a physician working alongside familiar colleagues is more likely to pick-up such a patient.
  
  \begin{figure} %[htbp]
      \centering
      \caption{How the effect of familiarity changes at the end of a shift or for certain patient populations.} \smallskip
      \includegraphics[scale=1]{Figures/PU/Post Hoc - Coef Plot.png}     
-     \label{fig:coef_plot}
-     \floatfoot{\textit{Note:} The figure illustrates how each measure would change (on average) with a 1\% increase in average familiarity. Percent changes for Pick-up Rate, Multitasking, and Wait Time are relative to median values in our dataset. For example, a 1\% increase in familiarity yields a 1.6\% increase in pick-up rate (relative to the median pick-up rate) on average, but the same increase in familiarity yields a 3.5\% increase in pick-up rate (relative to the median pick-up rate) during the last observed hour of the shift of a physician. Horizontal lines depict 95\% confidence intervals.}
+     \label{fig:pu_coef_plot}
+     \floatfoot{\textit{Figure Note:} The figure illustrates how each measure would change (on average) with a 1\% increase in average familiarity. Percent changes for Pick-up Rate, Multitasking, and Wait Time are relative to median values in our dataset. For example, a 1\% increase in familiarity yields a 1.6\% increase in pick-up rate (relative to the median pick-up rate) on average, but the same increase in familiarity yields a 3.5\% increase in pick-up rate (relative to the median pick-up rate) during the last observed hour of the shift of a physician. Horizontal lines depict 95\% confidence intervals.}
  \end{figure} 
  
  We then asked: “If familiarity increases patient pick-up in the ED, what else changes with more familiarity?" When working among more familiar peers, we found physicians pick up patients at a faster rate and multitask more, and so one might expect patients also wait less. Encouragingly, we found patient wait time does decrease with familiarity. Similar to above, we find a stronger effect for ESI-2 patients (ESI-1 covers symptoms such as cardiac or respiratory arrest which must be treated immediately, regardless of familiarity). For such patients, a 1\% increase in familiarity yields a 1.57 minute decrease in patient waiting time ($p < 0.01$), or a 3.1\% decrease relative to the median waiting time of 51 minutes.

@@ -2,16 +2,24 @@
 \phantomsection
 
 {\def\chapter*#1{} % suppress bibliograph header.
-\begin{singlespace}
-\addcontentsline{toc}{chapter}{BIBLIOGRAPHY}
+% \begin{singlespace}
+\addcontentsline{toc}{chapter}{REFERENCES}
 \begin{center}
-\normalfont \textbf{BIBLIOGRAPHY}
+\normalfont \textbf{REFERENCES}
 \vspace{17pt}
 \end{center}
 
-\bibliographystyle{apsr}
-\bibliography{diss}
-\end{singlespace}
+% \bibliographystyle{apsr}
+% \bibliography{diss}
+\bibliographystyle{apacite}
+
+\begingroup
+    \setlength{\bibsep}{10pt}
+    \setstretch{1}
+    \bibliography{Bibliography/diss_bib_9feb22.bib}
+\endgroup
+
+% \end{singlespace}
 }
 
 
